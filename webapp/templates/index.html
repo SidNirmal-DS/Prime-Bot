@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prime Bot</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url("https://images.unsplash.com/photo-1611892440504-42a792e24d32");
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      margin: 0;
+    }
+
+    .chat-box {
+      max-width: 80%;
+      margin: 2rem auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      padding: 1rem;
+      color: white;
+      overflow-y: auto;
+      max-height: 65vh;
+    }
+
+    .message {
+      margin: 0.75rem 0;
+      line-height: 1.6;
+    }
+
+    .message.user {
+      text-align: right;
+      color: #b2f7ef;
+    }
+
+    .message.bot {
+      text-align: left;
+      color: #f0e68c;
+    }
+
+    .input-area {
+      display: flex;
+      justify-content: center;
+      margin: 2rem;
+    }
+
+    textarea[name="query"] {
+      width: 70%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      resize: none;
+    }
+
+    button[type="submit"] {
+      background-color: #00f7ff;
+      color: black;
+      font-weight: bold;
+      padding: 0.75rem 1.25rem;
+      margin-left: 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .card-button {
+      background-color: #00f7ff;
+      color: black;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hotel-response {
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 0.75rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+<h1>Prime Bot</h1>
+<div class="chat-box" id="chat-box">
+  {% for msg in chat_history %}
+    {% if msg.sender == 'bot' and msg.get('type') == 'hotel_list' %}
+      {% set lines = msg.text.split('\n') %}
+      {% set hotel_name = "" %}
+      {% set recommendations_shown = false %}
+      {% for line in lines %}
+        {% if line.strip().startswith("1.") and not recommendations_shown %}
+          <div class="message bot"><strong>Hotel Recommendations:</strong></div>
+          {% set recommendations_shown = true %}
+        {% endif %}
+
+        {% if line.strip().startswith(("1.", "2.", "3.", "4.", "5.")) %}
+          {% set hotel_name = line.split(". **")[1].split("**")[0] %}
+          <div class="message bot hotel-response">
+            {{ line }}
+            <form method="POST">
+              <input type="hidden" name="selected_hotel" value="{{ hotel_name }}">
+              <button type="submit" class="card-button">Get This Deal</button>
+            </form>
+          </div>
+        {% else %}
+          <div class="message bot">{{ line }}</div>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <div class="message {{ msg.sender }}">{{ msg.text }}</div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<form method="POST" class="input-area">
+  <textarea name="query" placeholder="Type your hotel search request..." required></textarea>
+  <button type="submit">Send</button>
+</form>
+
+<script>
+  window.onload = () => {
+    const chatBox = document.getElementById("chat-box");
+    chatBox.scrollTop = chatBox.scrollHeight;
+  };
+</script>
+</body>
+</html>
