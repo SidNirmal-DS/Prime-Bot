@@ -88,6 +88,12 @@ I want to book a Deluxe room in Mumbai from 2025-06-12 to 2025-06-15
 
 Do not share your real `.env` file. A template is provided as `.env.example`.
 
+## Architecture
+
+Below is the high-level architecture diagram for PrimeBot:
+
+![Architecture Diagram](prime_architecture.png)
+
 ---
 ## Credits
 
