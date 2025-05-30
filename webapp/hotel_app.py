@@ -1,6 +1,10 @@
 import os
 from dotenv import load_dotenv
-load_dotenv()
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(dotenv_path=Path(BASE_DIR) / ".env")
+print("DEBUG API Key:", os.getenv("OPENAI_API_KEY"))
 
 from flask import Flask, request, render_template
 import sys
@@ -44,16 +48,24 @@ def index():
         matches = find_matching_hotels(parsed, df)
         response = generate_response(matches, user_query, selected_hotel)
 
-        chat_history.append({
-            "sender": "bot",
-            "text": response["hotels"],
-            "type": "hotel_list"
-        })
-        chat_history.append({
-            "sender": "bot",
-            "text": response["summary"],
-            "type": "general"
-        })
+        # ✅ Check if response includes 'hotels'
+        if response.get("type") == "hotel_list":
+            chat_history.append({
+                "sender": "bot",
+                "text": response.get("hotels", ""),
+                "type": "hotel_list"
+            })
+            chat_history.append({
+                "sender": "bot",
+                "text": response.get("summary", ""),
+                "type": "general"
+            })
+        else:
+            chat_history.append({
+                "sender": "bot",
+                "text": response.get("content", "Sorry, I couldn't find any hotels for your request."),
+                "type": "general"
+            })
 
     # 💬 3. Render Chat
     safe_history = [
