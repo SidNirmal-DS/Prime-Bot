@@ -30,30 +30,9 @@ Prime-Bot is a conversational hotel recommendation assistant built using OpenAI'
 
 ## Project Structure
 
-hotel-assistant-langchain/
-│
-├── app/
-│   ├── constants.py
-│   ├── query_parser.py
-│   ├── response_generator.py
-│   ├── hotel_selector.py
-│   ├── data_loader.py
-│   └── utils.py
-│
-├── webapp/
-│   ├── hotel_app.py
-│   └── templates/
-│       ├── index.html
-│       └── map.html
-│
-├── hotels.csv
-├── hotels_with_coordinates.csv
-├── geocode_hotels.py
-├── visualize_hotels.py
-├── runbot.sh
-├── requirements.txt
-├── .env.example
-└── .gitignore
+This visual representation illustrates how the entire folder hierarchy and module flow is structured:
+
+![Folder Structure](Visual_Layout1.png)
 
 
 ---
