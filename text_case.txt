@@ -1,0 +1,7 @@
+Test Case 1: 
+Input: I want to book a Deluxe room in Mumbai from June 12 to June 15.
+Expected Output: 5 hotel recommendations + map open if selected.
+
+Test Case 2: 
+Input: Budget hotels in South Mumbai.
+Expected Output: Matching budget hotel list or “no hotels found.”
