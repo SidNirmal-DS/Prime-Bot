@@ -1,6 +1,6 @@
-# Prime-Bot: AI-Powered Hotel Booking Assistant
+# PrimeBot: Smart Hotel Booking Assistant
 
-Prime-Bot is a conversational hotel recommendation assistant built using OpenAI's GPT model, Flask, and Google Maps API. It allows users to search for hotel options in Mumbai using natural language queries and receive structured, human-like responses.
+PrimeBot is a conversational hotel recommendation assistant built using OpenAI's GPT model, Flask, and Google Maps API. It allows users to search for hotel options in Mumbai using natural language queries and receive structured responses.
 
 ---
 
