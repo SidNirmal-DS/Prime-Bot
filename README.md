@@ -6,7 +6,7 @@ Prime-Bot is a conversational hotel recommendation assistant built using OpenAI'
 
 ## Features
 
-- AI-powered hotel recommendations based on user queries
+- Conversational AI hotel recommendations based on user queries
 - Parses user intent including location, room type, budget, and dates
 - Returns structured hotel cards with name, location, rating, reviews, and pricing
 - Summarizes the top 2 recommended hotels in natural language
