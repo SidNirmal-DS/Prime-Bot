@@ -74,6 +74,9 @@ Below is the high-level architecture diagram for PrimeBot:
 ![Architecture Diagram](prime_architecture.png)
 
 ## Prime Bot Mind Map
+
+This mind map shows the logical architecture and flow of the Prime Bot system.
+
 ![PrimeBot Map](https://raw.githubusercontent.com/SidNirmal-DS/Prime-Bot/main/primebot_mapping.png)
 
 
